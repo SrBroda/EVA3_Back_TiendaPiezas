@@ -1,0 +1,13 @@
+# Entorno y Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Django y base de datos local
+db.sqlite3
+media/
+staticfiles/
+
+.vscode/
+.idea/
