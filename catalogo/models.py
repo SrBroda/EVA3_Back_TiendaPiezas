@@ -20,6 +20,7 @@ class Pieza(models.Model):
     nombre = models.CharField(max_length=150)
     descripcion = models.TextField()
     precio = models.IntegerField(validators=[MinValueValidator(0)]) # Impide valores negativos
+    stock = models.IntegerField(validators=[MinValueValidator(0)], default=0) # Valida que el stock nunca baje de cero
     imagen = models.ImageField(upload_to='piezas/', null=True, blank=True) # Soporte multimedia
     estado = models.CharField(max_length=20, choices=ESTADO_CHOICES, default='Disponible') # Opciones cerradas
     vigente = models.BooleanField(default=True) # Control de vigencia / baja lógica
