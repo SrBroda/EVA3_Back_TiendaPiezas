@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
-from .models import Pieza
-from .forms import PiezaForm
+from .forms import PiezaForm, RegistroClienteForm
+from .models import Perfil, Pieza
 
 # Función para verificar si es staff
 def es_staff(user):
@@ -45,3 +45,21 @@ def eliminar_pieza(request, id):
         messages.success(request, 'Pieza eliminada.')
         return redirect('listar_piezas_admin')
     return render(request, 'catalogo/confirmar_eliminar.html', {'pieza': pieza})
+
+
+def registro_cliente(request):
+    if request.method == 'POST':
+        form = RegistroClienteForm(request.POST)
+        if form.is_valid():
+            usuario = form.save()
+            Perfil.objects.create(
+                usuario=usuario,
+                rut=form.cleaned_data['rut'],
+                telefono=form.cleaned_data['telefono'],
+                rol_institucional='Cliente',
+            )
+            messages.success(request, 'Tu cuenta se creó correctamente. Ya puedes iniciar sesión.')
+            return redirect('login')
+    else:
+        form = RegistroClienteForm()
+    return render(request, 'catalogo/registro.html', {'form': form})

@@ -1,5 +1,10 @@
 from django.contrib import admin
 from .models import Categoria, Pieza
+from .models import Categoria, Pieza, Perfil
+
+@admin.register(Perfil)
+class PerfilAdmin(admin.ModelAdmin):
+    list_display = ('usuario', 'rut', 'telefono', 'rol_institucional')
 
 # Identidad Corporativa
 admin.site.site_header = 'Hardware Store - Panel de Control'

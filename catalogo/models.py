@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.contrib.auth.models import User
 
 # Entidad de Contexto
 class Categoria(models.Model):
@@ -30,3 +31,13 @@ class Pieza(models.Model):
 
     def __str__(self):
         return f"{self.codigo} - {self.nombre}"
+
+
+class Perfil(models.Model):
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+    rut = models.CharField(max_length=12, help_text="Ejemplo: 12.345.678-9")
+    telefono = models.CharField(max_length=15)
+    rol_institucional = models.CharField(max_length=50, default='Cliente') # Puede ser 'Staff' o 'Cliente'
+
+    def __str__(self):
+        return f"Perfil de {self.usuario.username}"
