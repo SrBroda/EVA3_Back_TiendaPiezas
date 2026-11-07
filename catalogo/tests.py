@@ -39,6 +39,19 @@ class CatalogoYCotizadorTests(TestCase):
 		self.assertEqual(len(respuesta.context['piezas']), 1)
 		self.assertEqual(respuesta.context['piezas'][0], self.pieza)
 
+	def test_detalle_muestra_descripcion_y_tarjeta_enlaza_a_la_pieza(self):
+		respuesta = self.client.get(
+			reverse('detalle_pieza', args=[self.pieza.id])
+		)
+		self.assertEqual(respuesta.status_code, 200)
+		self.assertContains(respuesta, self.pieza.descripcion)
+
+		respuesta_catalogo = self.client.get(reverse('catalogo_publico'))
+		self.assertContains(
+			respuesta_catalogo,
+			reverse('detalle_pieza', args=[self.pieza.id]),
+		)
+
 	def test_carrito_calcula_iva_y_respeta_stock(self):
 		ruta_agregar = reverse('agregar_carrito', args=[self.pieza.id])
 		self.client.post(ruta_agregar)

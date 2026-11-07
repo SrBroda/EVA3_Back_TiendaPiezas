@@ -1,0 +1,24 @@
+{% if pieza.imagen %}
+    <img src="{{ pieza.imagen.url }}" alt="{{ pieza.nombre }}" loading="lazy" decoding="async">
+{% elif 'procesador' in pieza.categoria.nombre|lower %}
+    <img src="https://images.unsplash.com/photo-1494083306499-e22e4a457632?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Procesador de computadora de referencia" loading="lazy" decoding="async">
+{% elif 'grafica' in pieza.categoria.nombre|lower or 'gráfica' in pieza.categoria.nombre|lower %}
+    <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Tarjeta gráfica de referencia" loading="lazy" decoding="async">
+{% elif 'placa' in pieza.categoria.nombre|lower %}
+    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Placa madre de referencia" loading="lazy" decoding="async">
+{% elif 'memoria' in pieza.categoria.nombre|lower or 'ram' in pieza.categoria.nombre|lower %}
+    <img src="https://images.unsplash.com/photo-1541029071515-84cc54f84dc5?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Modulo de memoria RAM de referencia" loading="lazy" decoding="async">
+{% elif 'almacenamiento' in pieza.categoria.nombre|lower %}
+    {% if 'kingston-nv2-2tb' in pieza.codigo %}
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/2023_Dysk_SSD_Kingston_NV2_2TB.jpg" alt="Kingston NV2 NVMe de 2 TB" loading="lazy" decoding="async">
+    {% else %}
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/2023_Dysk_SSD_Kingston_NV2_2TB.jpg" alt="Unidad SSD NVMe M.2 de referencia" loading="lazy" decoding="async">
+    {% endif %}
+{% endif %}
+{% if 'almacenamiento' in pieza.categoria.nombre|lower %}
+    <span class="image-note">
+        <a href="https://commons.wikimedia.org/wiki/File:2023_Dysk_SSD_Kingston_NV2_2TB.jpg" target="_blank" rel="noopener noreferrer">Jacek Halicki</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>
+    </span>
+{% else %}
+    <span class="image-note">Imagen referencial</span>
+{% endif %}

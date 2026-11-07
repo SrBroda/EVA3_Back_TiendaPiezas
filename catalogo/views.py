@@ -43,6 +43,15 @@ def catalogo_publico(request):
 	)
 
 
+def detalle_pieza(request, id):
+	pieza = get_object_or_404(
+		Pieza.objects.select_related('categoria'),
+		id=id,
+		vigente=True,
+	)
+	return render(request, 'catalogo/detalle_pieza.html', {'pieza': pieza})
+
+
 def agregar_carrito(request, id):
 	if request.method != 'POST':
 		return redirect('catalogo_publico')
