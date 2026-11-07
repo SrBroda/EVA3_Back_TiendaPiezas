@@ -1,0 +1,22 @@
+{% extends 'catalogo/base.html' %}
+
+{% block title %}Iniciar sesión | Tienda PC{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-7 col-lg-5">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="h3 card-title mb-4">Iniciar sesión</h1>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+                    <button class="btn btn-primary w-100" type="submit">Entrar</button>
+                </form>
+                <p class="mb-0 mt-3 text-center">¿Aún no tienes cuenta? <a href="{% url 'registro_cliente' %}">Regístrate</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
