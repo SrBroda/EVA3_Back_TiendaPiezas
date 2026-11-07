@@ -12,10 +12,10 @@ class CategoriaAdmin(admin.ModelAdmin):
 
 @admin.register(Pieza)
 class PiezaAdmin(admin.ModelAdmin):
-    list_display = ('codigo', 'nombre', 'categoria', 'precio', 'estado', 'vigente') # Vista tabular
+    list_display = ('codigo', 'nombre', 'categoria', 'precio', 'stock', 'estado', 'vigente') # Vista tabular
     list_filter = ('categoria', 'estado', 'vigente') # Filtros laterales
     search_fields = ('codigo', 'nombre', 'descripcion') # Búsqueda textual
-    list_editable = ('precio', 'estado', 'vigente') # Edición rápida en grilla
+    list_editable = ('precio', 'stock', 'estado', 'vigente') # Edición rápida en grilla
     
     # Estructura modular del formulario
     fieldsets = (
@@ -23,7 +23,7 @@ class PiezaAdmin(admin.ModelAdmin):
             'fields': ('codigo', 'nombre', 'categoria', 'descripcion')
         }),
         ('Valores y Estado', {
-            'fields': ('precio', 'estado', 'vigente')
+            'fields': ('precio', 'stock', 'estado', 'vigente')
         }),
         ('Multimedia', {
             'fields': ('imagen',)
