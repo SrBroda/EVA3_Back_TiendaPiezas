@@ -6,9 +6,9 @@ class PerfilAdmin(admin.ModelAdmin):
     list_display = ('usuario', 'rut', 'telefono', 'rol_institucional')
 
 # Identidad Corporativa
-admin.site.site_header = 'Hardware Store - Panel de Control'
-admin.site.site_title = 'Hardware Store Admin'
-admin.site.index_title = 'Gestión Operativa de Recursos y Servicios'
+admin.site.site_header = 'Tienda de componentes - Panel de administración'
+admin.site.site_title = 'Administración de la tienda'
+admin.site.index_title = 'Administración del catálogo'
 
 @admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):

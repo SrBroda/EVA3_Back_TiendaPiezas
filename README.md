@@ -1,9 +1,9 @@
-# Hardware Store
+# Tienda de componentes
 
 Catálogo web para explorar y cotizar piezas de computador.
 
 ## Ficha del proyecto
-- **Organización o plataforma:** Hardware Store
+- **Organización o plataforma:** Tienda de componentes
 - **Giro:** Venta y cotización de componentes de computador
 - **Integrantes:** Completar con nombre y RUT de ambos integrantes
 - **Entidad de contexto:** `Categoria`

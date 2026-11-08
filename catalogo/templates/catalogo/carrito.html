@@ -1,6 +1,6 @@
 {% extends 'catalogo/base.html' %}
 
-{% block title %}Cotizador | Hardware Store{% endblock %}
+{% block title %}Cotizador | Tienda de componentes{% endblock %}
 
 {% block content %}
 <div class="mb-4">
@@ -68,7 +68,7 @@
     <aside class="col-12 col-lg-4" aria-label="Resumen de orden">
         <div class="card border-0 shadow-sm rounded-3">
             <div class="card-body p-4">
-                <h2 class="h5 mb-4">Resumen de Orden</h2>
+                <h2 class="h5 mb-4">Resumen del pedido</h2>
                 <div class="d-flex justify-content-between mb-3">
                     <span class="text-secondary">Subtotal</span>
                     <span class="fw-semibold">${{ subtotal|floatformat:0 }}</span>
@@ -85,10 +85,10 @@
                 {% if items %}
                     <form method="post" action="{% url 'simular_compra' %}">
                         {% csrf_token %}
-                        <button class="btn btn-success btn-lg w-100 shadow-sm mt-3" type="submit">Simular Compra</button>
+                        <button class="btn btn-success btn-lg w-100 shadow-sm mt-3" type="submit">Simular compra</button>
                     </form>
                 {% else %}
-                    <button class="btn btn-success btn-lg w-100 shadow-sm mt-3" type="button" disabled>Simular Compra</button>
+                    <button class="btn btn-success btn-lg w-100 shadow-sm mt-3" type="button" disabled>Simular compra</button>
                 {% endif %}
                 <p class="small text-secondary text-center mt-3 mb-0">Solicitud simulada sin compromiso.</p>
             </div>

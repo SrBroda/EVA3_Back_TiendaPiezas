@@ -10,6 +10,12 @@ class RegistroClienteForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
+        labels = {
+            'username': 'Nombre de usuario',
+            'first_name': 'Nombre',
+            'last_name': 'Apellido',
+            'email': 'Correo electrónico',
+        }
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -19,6 +25,10 @@ class RegistroClienteForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['rut'].label = 'RUT'
+        self.fields['telefono'].label = 'Teléfono'
+        self.fields['password1'].label = 'Contraseña'
+        self.fields['password2'].label = 'Confirmar contraseña'
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
 
@@ -26,6 +36,17 @@ class PiezaForm(forms.ModelForm):
     class Meta:
         model = Pieza
         fields = ['codigo', 'nombre', 'categoria', 'descripcion', 'precio', 'stock', 'imagen', 'estado', 'vigente']
+        labels = {
+            'codigo': 'Código',
+            'nombre': 'Nombre de la pieza',
+            'categoria': 'Categoría',
+            'descripcion': 'Descripción',
+            'precio': 'Precio',
+            'stock': 'Unidades disponibles',
+            'imagen': 'Imagen',
+            'estado': 'Estado',
+            'vigente': 'Activa en el catálogo',
+        }
         widgets = {
             'codigo': forms.TextInput(attrs={'class': 'form-control'}),
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),

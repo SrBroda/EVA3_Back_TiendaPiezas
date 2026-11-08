@@ -1,12 +1,12 @@
 {% extends 'catalogo/base.html' %}
 
-{% block title %}Catálogo | Tienda PC{% endblock %}
+{% block title %}Catálogo | Tienda de componentes{% endblock %}
 
 {% block content %}
 <section class="hero-banner text-white rounded-4 p-3 p-md-4 mb-4">
     <div class="row align-items-center g-4">
         <div class="col-12 col-lg-6">
-            <p class="text-uppercase small fw-semibold text-info mb-3">Hardware Store <span class="mx-1">/</span> Componentes seleccionados</p>
+            <p class="text-uppercase small fw-semibold text-info mb-3">Tienda de componentes <span class="mx-1">/</span> Componentes seleccionados</p>
             <h1 class="display-5 fw-bold mb-3">Tu próxima PC empieza aquí.</h1>
             <p class="lead text-white-50 mb-4">Piezas confiables, información clara y todo lo necesario para armar un equipo a tu medida.</p>
             <a class="btn btn-primary px-4 py-2" href="#productos">Explorar componentes <i class="bi bi-arrow-down-right ms-1" aria-hidden="true"></i></a>
@@ -22,7 +22,7 @@
                         </div>
                     {% endif %}
                     <figcaption class="hero-visual-caption d-flex justify-content-between align-items-center gap-3">
-                        <span class="small text-white-50">Catálogo de hardware</span>
+                        <span class="small text-white-50">Catálogo de componentes</span>
                         <span class="small fw-semibold">{{ page_obj.paginator.count }} componentes · {{ categorias|length }} categorías</span>
                     </figcaption>
                 </figure>
@@ -63,7 +63,7 @@
 <div id="productos" class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-3">
     <div>
         <p class="small text-uppercase text-secondary mb-1">Selección disponible</p>
-        <h2 class="h3 mb-0">Componentes para tu setup</h2>
+        <h2 class="h3 mb-0">Componentes para tu equipo</h2>
     </div>
     <span class="small text-secondary">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
 </div>
