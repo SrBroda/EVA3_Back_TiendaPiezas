@@ -14,7 +14,7 @@ PRODUCTOS = [
         'descripcion': 'Procesador AMD Ryzen 5 de la serie 5000 para equipos de escritorio.',
         'precio': 150000,
         'stock': 8,
-        'imagen': 'piezas/Captura de pantalla 2026-11-07 204724.png',
+        'imagen': 'piezas/AMD Ryzen 5 5600.jpg',
     },
     {
         'codigo': 'amd-ryzen-7-5700x',
@@ -23,7 +23,7 @@ PRODUCTOS = [
         'descripcion': 'Procesador AMD Ryzen 7 de 8 nucleos y 16 hilos para escritorio.',
         'precio': 189990,
         'stock': 6,
-        'imagen': 'piezas/Captura de pantalla 2026-11-07 204743.png',
+        'imagen': 'piezas/AMD Ryzen 7 5700X.jpg',
     },
     {
         'codigo': 'asus-prime-b550m-a-wifi',
@@ -32,7 +32,7 @@ PRODUCTOS = [
         'descripcion': 'Placa madre micro-ATX ASUS Prime con chipset B550 y WiFi.',
         'precio': 110000,
         'stock': 5,
-        'imagen': 'piezas/Captura de pantalla 2026-11-07 204928.png',
+        'imagen': 'piezas/ASUS Prime B550M-A WiFi.webp',
     },
     {
         'codigo': 'corsair-vengeance-32gb-ddr5',
@@ -41,7 +41,7 @@ PRODUCTOS = [
         'descripcion': 'Kit Corsair Vengeance DDR5 de 32 GB con iluminacion RGB.',
         'precio': 119990,
         'stock': 6,
-        'imagen': 'piezas/Captura de pantalla 2026-11-07 205002.png',
+        'imagen': 'piezas/Corsair Vengeance 32 GB DDR5 RGB.jpg',
     },
     {
         'codigo': 'gigabyte-b650m-ds3h-ax',
@@ -50,7 +50,7 @@ PRODUCTOS = [
         'descripcion': 'Placa madre micro-ATX AM5 Gigabyte con conectividad AX.',
         'precio': 159990,
         'stock': 4,
-        'imagen': 'piezas/Captura de pantalla 2026-11-07 205131.png',
+        'imagen': 'piezas/Gigabyte B650M DS3H AX.jpg',
     },
     {
         'codigo': 'intel-core-i5-12400f',
@@ -59,7 +59,7 @@ PRODUCTOS = [
         'descripcion': 'Procesador Intel Core i5 de 12a generacion para escritorio.',
         'precio': 140000,
         'stock': 6,
-        'imagen': 'piezas/Captura de pantalla 2026-11-07 205157.png',
+        'imagen': 'piezas/Intel Core i5-12400F.jpg',
     },
     {
         'codigo': 'intel-core-i5-13400f',
@@ -68,7 +68,7 @@ PRODUCTOS = [
         'descripcion': 'Procesador Intel Core i5 de 13a generacion para escritorio.',
         'precio': 219990,
         'stock': 5,
-        'imagen': 'piezas/Captura de pantalla 2026-11-07 205219.png',
+        'imagen': 'piezas/Intel Core i5-13400F.jpg',
     },
     {
         'codigo': 'kingston-fury-beast-16gb-ddr4',
@@ -77,7 +77,7 @@ PRODUCTOS = [
         'descripcion': 'Modulo Kingston Fury Beast DDR4 de 16 GB para escritorio.',
         'precio': 39990,
         'stock': 12,
-        'imagen': 'piezas/Captura de pantalla 2026-11-07 205240.png',
+        'imagen': 'piezas/Kingston Fury Beast 16 GB DDR4.jpg',
     },
     {
         'codigo': 'kingston-fury-beast-rgb-32gb-ddr4',
@@ -86,7 +86,7 @@ PRODUCTOS = [
         'descripcion': 'Kit Kingston Fury Beast RGB DDR4 de 32 GB para escritorio.',
         'precio': 69990,
         'stock': 8,
-        'imagen': 'piezas/Captura de pantalla 2026-11-07 205324.png',
+        'imagen': 'piezas/Kingston Fury Beast RGB 32 GB DDR4.jpg',
     },
     {
         'codigo': 'kingston-nv2-2tb',
@@ -95,7 +95,7 @@ PRODUCTOS = [
         'descripcion': 'Unidad SSD Kingston NV2 M.2 NVMe de 2 TB.',
         'precio': 119990,
         'stock': 5,
-        'imagen': 'piezas/Captura de pantalla 2026-11-07 205345.png',
+        'imagen': 'piezas/Kingston NV2 NVMe 2 TB.webp',
     },
     {
         'codigo': 'asrock-b650m-pro-rs-wifi',
@@ -104,7 +104,7 @@ PRODUCTOS = [
         'descripcion': 'Placa madre micro-ATX AM5 ASRock B650M Pro RS con WiFi.',
         'precio': 169990,
         'stock': 5,
-        'imagen': 'piezas/Captura de pantalla 2026-11-07 205412.png',
+        'imagen': 'piezas/ASRock B650M Pro RS WiFi.jpg',
     },
     {
         'codigo': 'asus-dual-radeon-rx-7600-8gb',
@@ -113,7 +113,7 @@ PRODUCTOS = [
         'descripcion': 'Tarjeta grafica ASUS Dual Radeon RX 7600 con 8 GB de memoria.',
         'precio': 329990,
         'stock': 7,
-        'imagen': 'piezas/Captura de pantalla 2026-11-07 205433.png',
+        'imagen': 'piezas/ASUS Dual Radeon RX 7600 8 GB.png',
     },
     {
         'codigo': 'asus-tuf-radeon-rx-7700-xt-12gb',
@@ -122,7 +122,7 @@ PRODUCTOS = [
         'descripcion': 'Tarjeta grafica ASUS TUF Radeon RX 7700 XT con 12 GB.',
         'precio': 599990,
         'stock': 4,
-        'imagen': 'Captura de pantalla 2026-11-07 205451.png',
+        'imagen': 'piezas/ASUS TUF Radeon RX 7700 XT 12 GB.jpg',
     },
     {
         'codigo': 'wd-blue-sn580-1tb',
@@ -131,7 +131,7 @@ PRODUCTOS = [
         'descripcion': 'Unidad SSD WD Blue SN580 M.2 NVMe de 1 TB.',
         'precio': 72990,
         'stock': 9,
-        'imagen': 'Captura de pantalla 2026-11-07 205511.png',
+        'imagen': 'piezas/WD Blue SN580 NVMe 1 TB.jpg',
     },
 ]
 
@@ -179,7 +179,15 @@ class Command(BaseCommand):
                 defaults=defaults,
             )
             creados += int(creado)
-            if not creado and not pieza.imagen and ruta_imagen.is_file():
+            imagen_actual = Path(settings.MEDIA_ROOT) / pieza.imagen.name
+            if (
+                not creado
+                and ruta_imagen.is_file()
+                and (
+                    not pieza.imagen
+                    or not imagen_actual.is_file()
+                )
+            ):
                 pieza.imagen = imagen
                 pieza.save(update_fields=['imagen'])
                 imagenes_asignadas += 1

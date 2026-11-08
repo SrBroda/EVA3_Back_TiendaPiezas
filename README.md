@@ -46,6 +46,8 @@ python manage.py runserver
 
 El comando `poblar_datos` crea cinco categorías, catorce piezas y cuentas de prueba de forma idempotente. Las contraseñas de las cuentas nuevas se generan aleatoriamente y se muestran una vez en la terminal. También se pueden definir `SEED_ADMIN_PASSWORD` y `SEED_USER_PASSWORD` en `.env` antes de ejecutarlo.
 
+Las imágenes de los productos y las que se cargan desde el panel se almacenan en `images/piezas/`.
+
 El usuario administrador inicia en `/admin/`; el usuario estándar sirve para probar el flujo de cliente. Guarda las claves generadas durante el comando: no se incluyen en el repositorio.
 
 Si una cuenta ya existía, el comando la conserva y no vuelve a mostrar su clave. Para restablecer la clave de un administrador existente, ejecuta `python manage.py changepassword admin`.
@@ -90,7 +92,7 @@ python manage.py test
 
 ## Preparar el ZIP de entrega
 
-Incluye el código y `media/` para conservar las fotografías de los productos. Excluye `.venv/`, `.env`, `__pycache__/` y `db.sqlite3`; las migraciones y `poblar_datos` reconstruyen el esquema y los datos.
+Incluye el código y `images/` para conservar las fotografías de los productos. Excluye `.venv/`, `.env`, `__pycache__/` y `db.sqlite3`; las migraciones y `poblar_datos` reconstruyen el esquema y los datos.
 
 
 -admin12345678
