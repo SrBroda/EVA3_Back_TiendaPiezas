@@ -85,10 +85,8 @@ python manage.py test
 
 ## Trabajo colaborativo
 - **Repositorio:** https://github.com/SrBroda/EVA3_Back_TiendaPiezas
-- **Integrante 1:** Completar nombre, RUT y aportes.
-- **Integrante 2:** Completar nombre, RUT y aportes.
-
-> Antes de entregar, reemplacen los campos pendientes de integrantes con los datos reales del equipo y registren los commits de ambos colaboradores.
+- **Integrante 1:** Benjamin Cisterna/ 22.052.314-4
+- **Integrante 2:** Benjamin Vivanco/ 22.324.938-8
 
 ## Preparar el ZIP de entrega
 
