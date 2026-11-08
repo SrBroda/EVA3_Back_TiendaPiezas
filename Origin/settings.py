@@ -11,21 +11,34 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+
+from dotenv import load_dotenv
+from django.core.exceptions import ImproperlyConfigured
+from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / '.env')
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6i!hjv8yn1)qtky$(82vl3d6b-*z6l7svq$*oe^7zw8y!w$2wn'
+# Keep secrets in the local, untracked .env file. The generated key is only
+# for local development; production must provide SECRET_KEY explicitly.
+DEBUG = os.getenv('DEBUG', 'True').strip().lower() in {'1', 'true', 'yes'}
+SECRET_KEY = os.getenv('SECRET_KEY', '').strip()
+if not SECRET_KEY:
+    if not DEBUG:
+        raise ImproperlyConfigured('Define SECRET_KEY in the environment or .env file.')
+    SECRET_KEY = get_random_secret_key()
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+    if host.strip()
+]
 
 
 # Application definition
@@ -127,8 +140,6 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
-
-import os
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

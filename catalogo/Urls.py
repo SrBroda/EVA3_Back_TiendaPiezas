@@ -16,12 +16,20 @@ urlpatterns = [
         name='logout',
     ),
     path('registro/', views.registro_cliente, name='registro_cliente'),
+    path('pieza/<int:id>/', views.detalle_pieza, name='detalle_pieza'),
+    path('gestion/piezas/', views.listar_piezas_admin, name='listar_piezas_admin'),
     path('carrito/', views.ver_carrito, name='ver_carrito'),
+    path(
+        'carrito/actualizar/<int:id>/',
+        views.actualizar_cantidad_carrito,
+        name='actualizar_cantidad_carrito',
+    ),
     path(
         'carrito/eliminar/<int:id>/',
         views.eliminar_del_carrito,
         name='eliminar_del_carrito',
     ),
+    path('vaciar-carrito/', views.vaciar_carrito, name='vaciar_carrito'),
     path(
         'agregar-carrito/<int:id>/',
         views.agregar_al_carrito,

@@ -14,6 +14,14 @@ from .models import Categoria, Perfil, Pieza
 def es_staff(user):
     return user.is_staff
 
+
+@login_required
+@user_passes_test(es_staff)
+def listar_piezas_admin(request):
+    piezas = Pieza.objects.select_related('categoria').order_by('nombre')
+    return render(request, 'catalogo/listar_piezas_admin.html', {'piezas': piezas})
+
+
 @login_required
 @user_passes_test(es_staff)
 def crear_pieza(request):
@@ -22,7 +30,7 @@ def crear_pieza(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Pieza agregada correctamente.')
-            return redirect('listar_piezas_admin') # Ajustaremos esta URL luego
+            return redirect('listar_piezas_admin')
     else:
         form = PiezaForm()
     return render(request, 'catalogo/form_pieza.html', {'form': form, 'titulo': 'Agregar Pieza'})
@@ -100,6 +108,15 @@ def catalogo_publico(request):
     )
 
 
+def detalle_pieza(request, id):
+    pieza = get_object_or_404(
+        Pieza.objects.select_related('categoria'),
+        id=id,
+        vigente=True,
+    )
+    return render(request, 'catalogo/detalle_pieza.html', {'pieza': pieza})
+
+
 @require_POST
 def agregar_al_carrito(request, id):
     pieza = get_object_or_404(Pieza, id=id, vigente=True)
@@ -123,6 +140,34 @@ def agregar_al_carrito(request, id):
     request.session['carrito'] = carrito
     messages.success(request, 'Pieza agregada al carrito.')
     return redirect('catalogo_publico')
+
+
+@require_POST
+def actualizar_cantidad_carrito(request, id):
+    pieza = get_object_or_404(Pieza, id=id, vigente=True)
+    carrito = request.session.get('carrito', {})
+    if not isinstance(carrito, dict) or str(pieza.id) not in carrito:
+        messages.error(request, 'La pieza no está en el carrito.')
+        return redirect('ver_carrito')
+
+    try:
+        cantidad = int(request.POST.get('cantidad', ''))
+    except (TypeError, ValueError):
+        messages.error(request, 'Indica una cantidad válida.')
+        return redirect('ver_carrito')
+
+    if cantidad < 1:
+        messages.error(request, 'La cantidad mínima es 1.')
+    elif cantidad > pieza.stock:
+        messages.error(
+            request,
+            f'Solo hay {pieza.stock} unidades disponibles de {pieza.nombre}.',
+        )
+    else:
+        carrito[str(pieza.id)] = cantidad
+        request.session['carrito'] = carrito
+        messages.success(request, 'Cantidad actualizada.')
+    return redirect('ver_carrito')
 
 
 def ver_carrito(request):
@@ -183,6 +228,13 @@ def eliminar_del_carrito(request, id):
 
 
 @require_POST
+def vaciar_carrito(request):
+    request.session.pop('carrito', None)
+    messages.info(request, 'Carrito vaciado.')
+    return redirect('ver_carrito')
+
+
+@require_POST
 def simular_compra(request):
     carrito = request.session.get('carrito', {})
     if not isinstance(carrito, dict) or not carrito:
@@ -222,6 +274,6 @@ def simular_compra(request):
         messages.error(request, str(error))
         return redirect('ver_carrito')
 
-    request.session.flush()
+    request.session.pop('carrito', None)
     messages.success(request, 'Compra simulada correctamente. ¡Gracias!')
     return redirect('catalogo_publico')

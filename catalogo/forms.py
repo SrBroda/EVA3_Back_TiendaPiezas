@@ -25,20 +25,36 @@ class RegistroClienteForm(UserCreationForm):
 class PiezaForm(forms.ModelForm):
     class Meta:
         model = Pieza
-        fields = ['codigo', 'nombre', 'categoria', 'descripcion', 'precio', 'imagen', 'estado', 'vigente']
+        fields = ['codigo', 'nombre', 'categoria', 'descripcion', 'precio', 'stock', 'imagen', 'estado', 'vigente']
         widgets = {
             'codigo': forms.TextInput(attrs={'class': 'form-control'}),
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'categoria': forms.Select(attrs={'class': 'form-select'}),
             'descripcion': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'precio': forms.NumberInput(attrs={'class': 'form-control'}),
+            'stock': forms.NumberInput(attrs={'class': 'form-control', 'min': 0}),
             'imagen': forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'estado': forms.Select(attrs={'class': 'form-select'}),
             'vigente': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
 
+    def clean_codigo(self):
+        codigo = self.cleaned_data['codigo']
+        duplicados = Pieza.objects.filter(codigo=codigo)
+        if self.instance.pk:
+            duplicados = duplicados.exclude(pk=self.instance.pk)
+        if duplicados.exists():
+            raise forms.ValidationError('Ya existe una pieza con este código.')
+        return codigo
+
     def clean_precio(self):
         precio = self.cleaned_data.get('precio')
-        if precio < 0:
+        if precio is not None and precio < 0:
             raise forms.ValidationError("El precio no puede ser un valor negativo.")
         return precio
+
+    def clean_stock(self):
+        stock = self.cleaned_data.get('stock')
+        if stock is not None and stock < 0:
+            raise forms.ValidationError('El stock no puede ser negativo.')
+        return stock

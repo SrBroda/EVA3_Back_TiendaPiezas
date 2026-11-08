@@ -1,0 +1,62 @@
+{% extends 'catalogo/base.html' %}
+
+{% block title %}{{ pieza.nombre }} | Hardware Store{% endblock %}
+
+{% block content %}
+<nav aria-label="Ruta de navegación" class="mb-4">
+    <ol class="breadcrumb small mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'catalogo_publico' %}">Catálogo</a></li>
+        <li class="breadcrumb-item active text-secondary" aria-current="page">{{ pieza.nombre }}</li>
+    </ol>
+</nav>
+
+<div class="row g-4 g-lg-5 align-items-start">
+    <div class="col-12 col-lg-7">
+        <figure class="detail-image mb-0">
+            {% if pieza.imagen %}
+                <img src="{{ pieza.imagen.url }}" alt="{{ pieza.nombre }}">
+            {% else %}
+                <div class="detail-image-fallback"><i class="bi bi-cpu" aria-hidden="true"></i></div>
+            {% endif %}
+            <figcaption class="detail-image-overlay">
+                <p class="small text-uppercase text-white-50 mb-1">{{ pieza.categoria.nombre }}</p>
+                <div class="d-flex flex-wrap justify-content-between align-items-end gap-3">
+                    <div>
+                        <h1 class="h2 text-white mb-2">{{ pieza.nombre }}</h1>
+                        <p class="text-white-50 mb-0">{{ pieza.descripcion }}</p>
+                    </div>
+                    <span class="fs-4 fw-bold text-white">${{ pieza.precio }}</span>
+                </div>
+            </figcaption>
+        </figure>
+    </div>
+
+    <section class="col-12 col-lg-5" aria-labelledby="detalle-heading">
+        <p class="small text-uppercase text-secondary mb-2">Ficha de producto</p>
+        <h2 id="detalle-heading" class="h3 mb-2">{{ pieza.nombre }}</h2>
+        <p class="product-code mb-4">Código {{ pieza.codigo }}</p>
+
+        <div class="d-flex justify-content-between align-items-center border-top border-bottom py-3 mb-4">
+            <span class="text-secondary">Disponibilidad</span>
+            {% if pieza.stock < 5 %}
+                <span class="badge rounded-pill bg-warning text-dark">Stock bajo · {{ pieza.stock }} disponibles</span>
+            {% else %}
+                <span class="badge rounded-pill bg-success">{{ pieza.stock }} disponibles</span>
+            {% endif %}
+        </div>
+
+        <h3 class="h5 mb-2">Descripción completa</h3>
+        <p class="text-secondary mb-4">{{ pieza.descripcion|linebreaksbr }}</p>
+
+        <div class="d-flex flex-column flex-sm-row gap-2">
+            <form method="post" action="{% url 'agregar_al_carrito' pieza.id %}" class="flex-grow-1">
+                {% csrf_token %}
+                <button class="btn btn-outline-primary btn-lg w-100" type="submit" {% if pieza.stock <= 0 %}disabled{% endif %}>
+                    <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>Agregar al carrito
+                </button>
+            </form>
+            <a class="btn btn-outline-secondary btn-lg" href="{% url 'catalogo_publico' %}">Volver al catálogo</a>
+        </div>
+    </section>
+</div>
+{% endblock %}

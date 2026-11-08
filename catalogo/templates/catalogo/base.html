@@ -3,34 +3,374 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}Tienda de piezas{% endblock %}</title>
+    <meta name="theme-color" content="#100d17">
+    <title>{% block title %}Hardware Store{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: dark;
+            --page-bg: #100d17;
+            --surface: #191521;
+            --surface-raised: #241d2d;
+            --line: #3b3048;
+            --ink: #f0ebf5;
+            --muted: #b5aabd;
+            --accent: #b493f4;
+            --bs-body-bg: var(--page-bg);
+            --bs-body-bg-rgb: 16, 13, 23;
+            --bs-body-color: var(--ink);
+            --bs-body-color-rgb: 240, 235, 245;
+            --bs-emphasis-color: #fffaff;
+            --bs-secondary-color: var(--muted);
+            --bs-border-color: var(--line);
+            --bs-primary: var(--accent);
+            --bs-primary-rgb: 180, 147, 244;
+            --bs-success: #79cf94;
+            --bs-success-rgb: 121, 207, 148;
+            --bs-link-color: #c2a5ff;
+            --bs-link-hover-color: #dbc9ff;
+            --bs-card-bg: var(--surface);
+            --bs-card-border-color: var(--line);
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--page-bg);
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        h1, h2, h3, .navbar-brand {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .navbar.bg-dark {
+            background: #15111b !important;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .navbar-brand { font-weight: 700; }
+        .nav-link { color: #c6bdcf; }
+        .nav-link:hover, .nav-link:focus { color: #fff; }
+
+        .card {
+            --bs-card-bg: var(--surface);
+            --bs-card-color: var(--ink);
+            --bs-card-border-color: var(--line);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.34) !important;
+        }
+
+        .text-secondary, .link-secondary { color: var(--muted) !important; }
+        .text-success { color: #79cf94 !important; }
+
+        .form-control, .form-select {
+            color: var(--ink);
+            background-color: #130f19;
+            border-color: var(--line);
+        }
+
+        .form-control::placeholder { color: #958ba0; }
+        .form-control:focus, .form-select:focus {
+            color: var(--ink);
+            background-color: #130f19;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 0.25rem rgba(180, 147, 244, 0.2);
+        }
+
+        .form-select option { color: var(--ink); background: var(--surface); }
+        .input-group-text { color: var(--muted); background: var(--surface-raised); border-color: var(--line); }
+
+        .btn-primary {
+            --bs-btn-color: #211532;
+            --bs-btn-bg: var(--accent);
+            --bs-btn-border-color: var(--accent);
+            --bs-btn-hover-color: #211532;
+            --bs-btn-hover-bg: #c2a7f7;
+            --bs-btn-hover-border-color: #c2a7f7;
+            --bs-btn-active-color: #211532;
+            --bs-btn-active-bg: #a482e8;
+            --bs-btn-active-border-color: #a482e8;
+        }
+
+        .btn-outline-primary {
+            --bs-btn-color: #d0baff;
+            --bs-btn-border-color: #8062ad;
+            --bs-btn-hover-color: #211532;
+            --bs-btn-hover-bg: var(--accent);
+            --bs-btn-hover-border-color: var(--accent);
+        }
+
+        .table {
+            --bs-table-color: var(--ink);
+            --bs-table-bg: transparent;
+            --bs-table-border-color: var(--line);
+            --bs-table-hover-color: #fff;
+            --bs-table-hover-bg: var(--surface-raised);
+        }
+
+        .table > :not(caption) > * > * {
+            color: var(--ink);
+            background-color: transparent;
+            border-bottom-color: var(--line);
+        }
+
+        .pagination {
+            --bs-pagination-color: #c6bdcf;
+            --bs-pagination-bg: var(--surface);
+            --bs-pagination-border-color: var(--line);
+            --bs-pagination-hover-color: #fff;
+            --bs-pagination-hover-bg: var(--surface-raised);
+            --bs-pagination-hover-border-color: #69577c;
+            --bs-pagination-disabled-color: #80778b;
+            --bs-pagination-disabled-bg: var(--surface);
+            --bs-pagination-disabled-border-color: var(--line);
+            --bs-pagination-active-color: #211532;
+            --bs-pagination-active-bg: var(--accent);
+            --bs-pagination-active-border-color: var(--accent);
+        }
+
+        .alert {
+            --bs-alert-color: #eee7f5;
+            --bs-alert-bg: #241d2d;
+            --bs-alert-border-color: #514163;
+        }
+
+        .alert-success {
+            --bs-alert-color: #d9f3e1;
+            --bs-alert-bg: #142d22;
+            --bs-alert-border-color: #2b6242;
+        }
+
+        .alert-danger {
+            --bs-alert-color: #f7d9dc;
+            --bs-alert-bg: #351c21;
+            --bs-alert-border-color: #73323b;
+        }
+
+        .hero-banner {
+            overflow: hidden;
+            background: linear-gradient(125deg, #19121f 0%, #382444 64%, #251b2c 100%);
+            border: 1px solid rgba(196, 166, 255, 0.2);
+        }
+
+        .hero-banner h1 { max-width: 13ch; line-height: 1.04; }
+        .hero-banner .text-info { color: #dfc7ff !important; }
+
+        .hero-visual {
+            position: relative;
+            min-height: 230px;
+            overflow: hidden;
+            border: 1px solid rgba(223, 199, 255, 0.22);
+            border-radius: 0.9rem;
+            background: #21182c;
+        }
+
+        .hero-visual img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            padding: 1rem;
+            object-fit: contain;
+            background: #f9f8fb;
+        }
+
+        .hero-visual-fallback {
+            min-height: 230px;
+            display: grid;
+            place-items: center;
+            color: #d7c2fa;
+            background: radial-gradient(circle at center, #49375b, #21182c 70%);
+            font-size: 4rem;
+        }
+
+        .hero-visual-caption {
+            position: absolute;
+            z-index: 1;
+            right: 0.9rem;
+            bottom: 0.9rem;
+            left: 0.9rem;
+            padding: 0.65rem 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.65rem;
+            background: rgba(16, 13, 23, 0.88);
+            backdrop-filter: blur(8px);
+        }
+
+        .catalog-toolbar {
+            border: 1px solid var(--line);
+            background: linear-gradient(145deg, #21182c, #17131d);
+        }
+
+        .product-image-wrap {
+            position: relative;
+            height: 210px;
+            overflow: hidden;
+            background: #f9f8fb;
+        }
+
+        .product-image-link {
+            position: absolute;
+            inset: 0;
+            display: block;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .product-image-link img {
+            width: 100%;
+            height: 100%;
+            padding: 0.65rem;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .product-image-overlay {
+            position: absolute;
+            inset: auto 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 1rem 0.85rem;
+            background: linear-gradient(transparent, rgba(16, 13, 23, 0.92));
+            opacity: 0;
+            transform: translateY(0.35rem);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .product-image-link:hover img,
+        .product-image-link:focus-visible img { transform: scale(1.035); }
+
+        .product-image-link:hover .product-image-overlay,
+        .product-image-link:focus-visible .product-image-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-image-link:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: -3px;
+        }
+
+        .product-title-link {
+            position: relative;
+            z-index: 2;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .product-title-link:hover { color: #d7c2fa; }
+
+        .detail-image {
+            position: relative;
+            height: min(62vw, 560px);
+            min-height: 360px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 1rem;
+            background: #f9f8fb;
+        }
+
+        .detail-image > img {
+            width: 100%;
+            height: 100%;
+            padding: 1.25rem;
+            object-fit: contain;
+        }
+
+        .detail-image-overlay {
+            position: absolute;
+            inset: auto 0 0;
+            padding: 4rem 1.5rem 1.5rem;
+            background: linear-gradient(transparent, rgba(16, 13, 23, 0.96));
+        }
+
+        .detail-image-fallback {
+            min-height: 360px;
+            display: grid;
+            place-items: center;
+            color: #d7c2fa;
+            background: radial-gradient(circle at center, #49375b, #21182c 70%);
+            font-size: 5rem;
+        }
+
+        .product-card .card-body { min-height: 220px; }
+        .product-card form { position: relative; z-index: 2; }
+        .product-card .btn { min-height: 44px; }
+
+        .product-code {
+            color: var(--muted);
+            font-size: 0.78rem;
+        }
+
+        .site-footer {
+            border-color: var(--line) !important;
+            background: #15111b;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .card, .product-image-link img, .product-image-overlay { transition: none; }
+            .card:hover, .product-image-link:hover img { transform: none; }
+        }
+
+        @media (max-width: 767.98px) {
+            .hero-visual { min-height: 150px; }
+            .hero-visual-fallback { min-height: 150px; }
+            .hero-banner h1 { font-size: 2rem; }
+            .hero-banner .lead { font-size: 1rem; }
+            .product-card .card-body { min-height: 0; }
+            .product-image-wrap { height: 220px; }
+            .detail-image { height: 340px; min-height: 0; }
+            .detail-image-fallback { min-height: 340px; }
+            .detail-image-overlay { padding: 3rem 1rem 1rem; }
+            .product-image-overlay { opacity: 1; transform: none; }
+        }
+    </style>
 </head>
 <body class="d-flex min-vh-100 flex-column">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'catalogo_publico' %}">Tienda PC</a>
+            <a class="navbar-brand" href="{% url 'catalogo_publico' %}">Hardware Store</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTienda" aria-controls="navbarTienda" aria-expanded="false" aria-label="Abrir navegación">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTienda">
-                <div class="navbar-nav me-auto">
-                    <a class="nav-link" href="{% url 'catalogo_publico' %}">Catálogo</a>
-                    <a class="nav-link" href="{% url 'ver_carrito' %}">Carrito <span class="badge text-bg-light">{{ cantidad_carrito }}</span></a>
+                <div class="navbar-nav mx-lg-auto">
+                    <a class="nav-link px-lg-3" href="{% url 'catalogo_publico' %}">Inicio</a>
+                    {% if user.is_staff %}
+                        <a class="nav-link px-lg-3" href="{% url 'listar_piezas_admin' %}">Administrar piezas</a>
+                    {% endif %}
                 </div>
-                <div class="navbar-nav">
+                <div class="navbar-nav align-items-lg-center gap-lg-2 ms-lg-auto">
                     {% if user.is_authenticated %}
-                        <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
+                        <form method="post" action="{% url 'logout' %}" class="d-flex">
+                            {% csrf_token %}
+                            <button class="nav-link border-0 bg-transparent" type="submit">Cerrar sesión</button>
+                        </form>
                     {% else %}
                         <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
                         <a class="nav-link" href="{% url 'registro_cliente' %}">Registro</a>
                     {% endif %}
+                    <a class="nav-link d-inline-flex align-items-center gap-2" href="{% url 'ver_carrito' %}" aria-label="Abrir carrito, {{ cantidad_carrito }} artículos">
+                        <i class="bi bi-bag" aria-hidden="true"></i>
+                        <span>Carrito</span>
+                        <span class="badge rounded-pill bg-danger">{{ cantidad_carrito }}</span>
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <main class="container flex-grow-1 py-4">
+    <main class="container flex-grow-1 py-4 py-lg-5">
         {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert">
@@ -41,6 +381,19 @@
         {% endif %}
         {% block content %}{% endblock %}
     </main>
+
+    <footer class="site-footer border-top py-4">
+        <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3">
+            <p class="small text-secondary mb-0">&copy; {% now "Y" %} Hardware Store. Todos los derechos reservados.</p>
+            <nav class="d-flex flex-wrap justify-content-center gap-3" aria-label="Enlaces del pie de página">
+                <a class="small link-secondary text-decoration-none" href="{% url 'catalogo_publico' %}">Catálogo</a>
+                <a class="small link-secondary text-decoration-none" href="{% url 'ver_carrito' %}">Carrito</a>
+                {% if not user.is_authenticated %}
+                    <a class="small link-secondary text-decoration-none" href="{% url 'login' %}">Iniciar sesión</a>
+                {% endif %}
+            </nav>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
