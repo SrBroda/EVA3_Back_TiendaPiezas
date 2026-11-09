@@ -5,7 +5,7 @@ Catálogo web para explorar y cotizar piezas de computador.
 ## Ficha del proyecto
 - **Organización o plataforma:** Tienda de componentes
 - **Giro:** Venta y cotización de componentes de computador
-- **Integrantes:** Completar con nombre y RUT de ambos integrantes
+- **Integrantes:** Benjamin Cisterna/22.052.314-4 y Benjamin Vivanco/22.324.938-8
 - **Entidad de contexto:** `Categoria`
 - **Entidad principal:** `Pieza`
 - **Propósito de la sesión:** Cotizador temporal con cantidades, subtotal, IVA y total
